@@ -5,3 +5,5 @@
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=liadiann_java-project-72&metric=bugs)](https://sonarcloud.io/summary/new_code?id=liadiann_java-project-72)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=liadiann_java-project-72&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=liadiann_java-project-72)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=liadiann_java-project-72&metric=coverage)](https://sonarcloud.io/summary/new_code?id=liadiann_java-project-72)
+
+[Приложение](https://java-project-72-h5ru.onrender.com)
