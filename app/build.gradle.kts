@@ -22,6 +22,8 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     implementation("org.postgresql:postgresql:42.7.7")
+    implementation("gg.jte:jte:3.2.1")
+    implementation("io.javalin:javalin-rendering:6.7.0")
 }
 
 application {
