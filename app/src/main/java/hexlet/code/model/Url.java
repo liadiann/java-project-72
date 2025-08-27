@@ -10,10 +10,14 @@ import java.time.LocalDateTime;
 public class Url {
     private Long id;
     private String name;
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
-    public Url(String name, LocalDateTime created_at) {
+    public Url(String name, LocalDateTime createdAt) {
         this.name = name;
-        this.created_at = created_at;
+        this.createdAt = createdAt;
+    }
+
+    public Url(String name) {
+        this.name = name;
     }
 }

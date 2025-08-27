@@ -5,7 +5,9 @@ import com.zaxxer.hikari.HikariDataSource;
 import gg.jte.ContentType;
 import gg.jte.TemplateEngine;
 import gg.jte.resolve.ResourceCodeResolver;
+import hexlet.code.controller.UrlsController;
 import hexlet.code.repository.BaseRepository;
+import hexlet.code.util.NamedRoutes;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinJte;
 
@@ -21,7 +23,7 @@ public class App {
     }
 
     public static String getDatabaseUrl() {
-        return System.getenv().getOrDefault("JDBC_DATABASE_URL","jdbc:h2:mem:project");
+        return System.getenv().getOrDefault("JDBC_DATABASE_URL", "jdbc:h2:mem:project");
     }
 
     private static TemplateEngine createTemplateEngine() {
@@ -50,7 +52,11 @@ public class App {
             config.bundledPlugins.enableDevLogging();
             config.fileRenderer(new JavalinJte(createTemplateEngine()));
         });
-        app.get("/", ctx -> ctx.render("mainPage.jte"));
+        app.get(NamedRoutes.buildUrlPath(), UrlsController::build);
+        app.post(NamedRoutes.urlsPath(), UrlsController::create);
+
+        app.get(NamedRoutes.urlsPath(), UrlsController::index);
+        app.get(NamedRoutes.urlPath("{id}"), UrlsController::show);
         return app;
     }
 
