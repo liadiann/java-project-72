@@ -16,14 +16,16 @@ repositories {
 
 dependencies {
     implementation("io.javalin:javalin:6.7.0")
+    implementation("io.javalin:javalin-rendering:6.7.0")
+    implementation("io.javalin:javalin-bundle:6.7.0")
     implementation("org.slf4j:slf4j-simple:2.0.17")
     implementation("com.zaxxer:HikariCP:7.0.2")
     implementation("com.h2database:h2:2.3.232")
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("org.assertj:assertj-core:3.27.3")
     implementation("org.postgresql:postgresql:42.7.7")
     implementation("gg.jte:jte:3.2.1")
-    implementation("io.javalin:javalin-rendering:6.7.0")
 }
 
 application {
