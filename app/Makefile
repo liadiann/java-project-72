@@ -2,7 +2,7 @@ build:
 	./gradlew build
 report:
 	./gradlew jacocoTestReport
-run-test:
+test:
 	./gradlew test
 sonar-info:
 	./gradlew sonar --info
