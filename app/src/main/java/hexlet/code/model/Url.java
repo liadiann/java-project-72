@@ -11,11 +11,6 @@ public class Url {
     private Integer id;
     private String name;
     private LocalDateTime createdAt;
-    private boolean hasCheck = false;
-
-    public boolean getHasCheck() {
-        return hasCheck;
-    }
 
     public Url(String name, LocalDateTime createdAt) {
         this.name = name;

@@ -88,7 +88,6 @@ public class UrlsController {
         UrlCheckRepository.save(check);
         ctx.sessionAttribute("flash", "Страница успешно проверена");
         ctx.sessionAttribute("alert", "alert-success");
-        url.setHasCheck(true);
         ctx.redirect(NamedRoutes.urlPath(urlId));
     }
 }
