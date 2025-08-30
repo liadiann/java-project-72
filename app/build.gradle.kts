@@ -26,6 +26,8 @@ dependencies {
     testImplementation("org.assertj:assertj-core:3.27.3")
     implementation("org.postgresql:postgresql:42.7.7")
     implementation("gg.jte:jte:3.2.1")
+    implementation("com.konghq:unirest-java-core:4.5.0")
+    implementation("org.jsoup:jsoup:1.21.2")
 }
 
 application {

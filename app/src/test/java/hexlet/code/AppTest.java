@@ -89,7 +89,7 @@ public class AppTest {
     @Test
     public void testUserNotFound() {
         JavalinTest.test(app, (server, client) -> {
-            var response = client.get(NamedRoutes.urlPath(Long.valueOf(99999)));
+            var response = client.get(NamedRoutes.urlPath(99999));
             assertThat(response.code()).isEqualTo(404);
         });
     }

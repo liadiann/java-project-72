@@ -8,9 +8,14 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class Url {
-    private Long id;
+    private Integer id;
     private String name;
     private LocalDateTime createdAt;
+    private boolean hasCheck = false;
+
+    public boolean getHasCheck() {
+        return hasCheck;
+    }
 
     public Url(String name, LocalDateTime createdAt) {
         this.name = name;

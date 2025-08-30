@@ -20,18 +20,18 @@ public class UrlRepository extends BaseRepository {
             preparedStatement.executeUpdate();
             var generatedKeys = preparedStatement.getGeneratedKeys();
             if (generatedKeys.next()) {
-                url.setId(generatedKeys.getLong(1));
+                url.setId(generatedKeys.getInt(1));
             } else {
                 throw new SQLException("DB have not returned an id after saving an entity");
             }
         }
     }
 
-    public static Optional<Url> find(Long id) throws SQLException {
+    public static Optional<Url> find(Integer id) throws SQLException {
         var sql = "SELECT * FROM urls WHERE id = ?";
         try (var conn = dataSource.getConnection();
             var statement = conn.prepareStatement(sql)) {
-            statement.setLong(1, id);
+            statement.setInt(1, id);
             var resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 var name = resultSet.getString("name");
@@ -52,7 +52,7 @@ public class UrlRepository extends BaseRepository {
             var resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 var createdAt = resultSet.getTimestamp("created_at").toLocalDateTime();
-                var id = resultSet.getLong("id");
+                var id = resultSet.getInt("id");
                 var url = new Url(name, createdAt);
                 url.setId(id);
                 return Optional.of(url);
@@ -70,7 +70,7 @@ public class UrlRepository extends BaseRepository {
             while (resultSet.next()) {
                 var name = resultSet.getString("name");
                 var createdAt = resultSet.getTimestamp("created_at").toLocalDateTime();
-                var id = resultSet.getLong("id");
+                var id = resultSet.getInt("id");
                 var url = new Url(name, createdAt);
                 url.setId(id);
                 result.add(url);
