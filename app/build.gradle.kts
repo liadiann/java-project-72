@@ -28,6 +28,7 @@ dependencies {
     implementation("gg.jte:jte:3.2.1")
     implementation("com.konghq:unirest-java-core:4.5.0")
     implementation("org.jsoup:jsoup:1.21.2")
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
 }
 
 application {

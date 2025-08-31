@@ -61,14 +61,15 @@ public class UrlCheckRepository extends BaseRepository {
     }
 
     public static Map<Integer, UrlCheck> findChecksWithLastCreatedAt() throws SQLException {
-        var sql = "SELECT url_id, MAX(created_at), MAX(status_code) FROM url_checks GROUP BY url_id";
+        var sql = "SELECT url_id, MAX(created_at) AS created_at, "
+                + "MAX(status_code) AS status_code FROM url_checks GROUP BY url_id";
         try (var conn = dataSource.getConnection();
             var statement = conn.prepareStatement(sql)) {
             var resultSet = statement.executeQuery();
             var result = new HashMap<Integer, UrlCheck>();
             while (resultSet.next()) {
-                var createdAt = resultSet.getTimestamp("MAX(created_at)").toLocalDateTime();
-                var statusCode = resultSet.getInt("MAX(status_code)");
+                var createdAt = resultSet.getTimestamp("created_at").toLocalDateTime();
+                var statusCode = resultSet.getInt("status_code");
                 var urlId = resultSet.getInt("url_id");
                 var urlCheck = new UrlCheck(urlId);
                 urlCheck.setCreatedAt(createdAt);
