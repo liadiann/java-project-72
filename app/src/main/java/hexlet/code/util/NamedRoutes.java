@@ -23,6 +23,6 @@ public class NamedRoutes {
     }
 
     public static String checkUrl(String id) {
-        return "/urls/" + id + "/check";
+        return "/urls/" + id + "/checks";
     }
 }
