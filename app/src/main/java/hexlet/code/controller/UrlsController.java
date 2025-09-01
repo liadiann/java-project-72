@@ -74,20 +74,26 @@ public class UrlsController {
         var url = UrlRepository.find(urlId)
                 .orElseThrow(() -> new NotFoundResponse("Url not found"));
         var check = new UrlCheck(urlId);
-        var response = Unirest.get(url.getName()).asString();
-        check.setStatusCode(response.getStatus());
-        var html = response.getBody();
-        var document = Jsoup.parse(html);
-        check.setTitle(document.title());
-        var elementH1 = document.selectFirst("h1");
-        var h1 = elementH1 == null ? null : elementH1.text();
-        check.setH1(h1);
-        var elementDescription = document.selectFirst("meta[name=description]");
-        var description = elementDescription == null ? null : elementDescription.attr("content");
-        check.setDescription(description);
-        UrlCheckRepository.save(check);
-        ctx.sessionAttribute("flash", "Страница успешно проверена");
-        ctx.sessionAttribute("alert", "alert-success");
-        ctx.redirect(NamedRoutes.urlPath(urlId));
+        try {
+            var response = Unirest.get(url.getName()).asString();
+            check.setStatusCode(response.getStatus());
+            var html = response.getBody();
+            var document = Jsoup.parse(html);
+            check.setTitle(document.title());
+            var elementH1 = document.selectFirst("h1");
+            var h1 = elementH1 == null ? null : elementH1.text();
+            check.setH1(h1);
+            var elementDescription = document.selectFirst("meta[name=description]");
+            var description = elementDescription == null ? null : elementDescription.attr("content");
+            check.setDescription(description);
+            UrlCheckRepository.save(check);
+            ctx.sessionAttribute("flash", "Страница успешно проверена");
+            ctx.sessionAttribute("alert", "alert-success");
+            ctx.redirect(NamedRoutes.urlPath(urlId));
+        } catch (Exception e) {
+            ctx.sessionAttribute("flash", "Некорректный адрес");
+            ctx.sessionAttribute("alert", "alert-danger");
+            ctx.redirect(NamedRoutes.urlPath(urlId));
+        }
     }
 }
