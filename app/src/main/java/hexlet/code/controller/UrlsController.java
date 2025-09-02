@@ -27,7 +27,7 @@ public class UrlsController {
         ctx.render("urls/build.jte", model("page", page));
     }
 
-    public static void create(Context ctx) throws SQLException{
+    public static void create(Context ctx) throws SQLException {
         var originalUrl = ctx.formParam("url");
         String normalizedUrl;
         try {
